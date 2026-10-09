@@ -4,33 +4,33 @@
 
 **独立项目**：clone 到任意目录，写好 `config/local.toml` 指向本机 ComfyUI，即可生成。
 
-| 文档 | 给谁 |
-|------|------|
-| [`AGENTS.md`](AGENTS.md) | Agent / 自动化 |
-| [`docs/使用手册.md`](docs/使用手册.md) | 人类操作 |
+| 文档 | 给谁 | 何时读 |
+|------|------|--------|
+| **[`AGENTS.md`](AGENTS.md)** | **Agent / Cursor / 自动化** | **做歌或改仓前必读**（含「遇事先问」） |
+| [`docs/使用手册.md`](docs/使用手册.md) | 人类 | 命令与配置详解 |
+| [`config/local.toml.example`](config/local.toml.example) | 所有人 | 第一次连本机 ComfyUI |
+
+> 给 Agent：读完 `AGENTS.md` 再动手。缺 `local.toml`、Comfy 没起、风格/歌名不清、想改模型或阈值时——**先问用户，不要猜**。
 
 ## 换目录也能用（推荐）
 
 ```powershell
-# 1) clone（GitHub 或 Gitea）
 cd D:\CodeFiles\ProProjects
 git clone https://git.nnrc.ren/swl/songforge.git
+# 或：git clone https://github.com/lsuen/songforge.git
 cd songforge
 
-# 2) CLI 环境（Python >= 3.11）
 .\scripts\setup_venv.ps1
-
-# 3) 本机 ComfyUI 连接（只改这一份）
 copy config\local.toml.example config\local.toml
-# 编辑：
+# 编辑 local.toml：
 #   [engine] server = "http://127.0.0.1:8188"
 #   [paths]  comfy_root / qc_python / music_dir
 
-# 4) 先起 ComfyUI，再体检
+# 先启动本机 ComfyUI，再：
 .\.venv\Scripts\python.exe songforge.py doctor
 ```
 
-只要 ComfyUI 在跑、`local.toml` 里 `comfy_root` 指向正确安装根（含 `models/checkpoints` 与 LoRA），**不必**把本仓放进 ComfyUI 的 `user/default/workflows`。
+不必把本仓放进 ComfyUI 的 `user/default/workflows`。
 
 ## 两个 Python 环境
 
@@ -44,9 +44,10 @@ copy config\local.toml.example config\local.toml
 | 文件 | 作用 |
 |------|------|
 | `config/default.toml` | 算法 / 相对路径（相对**本仓根**） |
-| `config/local.toml` | 本机 Comfy 根、服务地址、QC Python（gitignore） |
-| `workflows/template.json` | 包内 workflow 图（JSON，与配置分流） |
+| `config/local.toml` | 本机 Comfy 根、服务地址、QC Python（**勿提交**） |
+| `workflows/template.json` | workflow 图（JSON） |
 | `config/baseline/*.json` | QC 基线数据 |
+| `.secrets/` | 远程 token（**勿提交**） |
 
 优先级：`命令行 > SONGFORGE_* > local.toml > default.toml > DEFAULTS`
 
@@ -59,7 +60,7 @@ copy config\local.toml.example config\local.toml
 .\.venv\Scripts\python.exe songforge.py qc    --run gen-<时间戳> --baseline
 ```
 
-`qc` 必须带 `--baseline`。音频写到 ComfyUI `output/MyMusic/`（可用 `music_dir` 覆盖）。
+`qc` 必须带 `--baseline`。完整 Agent 规则与「何时发问」见 [`AGENTS.md`](AGENTS.md)。
 
 ## 硬约束（摘要）
 
@@ -70,21 +71,10 @@ copy config\local.toml.example config\local.toml
 | 时长 | 完整歌 150–200 秒 |
 | 前奏 | 8 小节器乐 hook；CLI 自动注入 |
 
-## 目录
-
-```
-songforge/                 # clone 下来的仓根 = 包根
-  config/default.toml
-  config/local.toml        # 本机（勿提交）
-  data/runs/YYYY-MM-DD/    # gen 产物
-  workflows/template.json
-  .venv/
-```
-
 ## 远程
 
-- GitHub: https://github.com/lsuen/songforge  
 - Gitea: https://git.nnrc.ren/swl/songforge  
+- GitHub: https://github.com/lsuen/songforge  
 
 ## License
 

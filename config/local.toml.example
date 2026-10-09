@@ -1,15 +1,18 @@
-# 复制为 local.toml（已 gitignore）。clone 到任意目录后只改这里即可连本机 ComfyUI。
+# 复制为 local.toml（已 gitignore，勿提交）。
+# clone 到任意目录后只改这里即可连本机 ComfyUI。
 #
-# 例：D:\CodeFiles\ProProjects\songforge
+# 例：
 #   copy config\local.toml.example config\local.toml
-#   填好下方路径 → .\.venv\Scripts\python.exe songforge.py doctor
+#   填好下方 → 启动 ComfyUI → .\.venv\Scripts\python.exe songforge.py doctor
+#
+# Agent：若本文件不存在或路径不对，先问用户 comfy_root / server / qc_python，不要猜。
 
 [engine]
 # ComfyUI 已启动的地址（本机默认 8188）
 server = "http://127.0.0.1:8188"
 
 [paths]
-# ComfyUI 安装根（含 models/ checkpoints、loras、custom_nodes）
+# ComfyUI 安装根（含 models/checkpoints、models/loras、custom_nodes）
 comfy_root = "D:/CodeFiles/Thinking/ComfyUI-MiniMaxH3"
 
 # QC 用的 Python（需 librosa/torch/demucs；可与 CLI .venv 分离）
