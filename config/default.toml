@@ -36,18 +36,18 @@ min_p = 0.02
 generate_audio_codes = true
 timesignature = "4"
 
-# 相对路径相对「workflows 父目录」（嵌套在 ComfyUI 时）或克隆仓的父目录。
-# 本机 comfy_root / qc_python / music_dir 放 local.toml。
+# 相对路径一律相对本仓根（clone 到哪就是哪）。
+# 本机 comfy_root / qc_python / music_dir / server 放 local.toml。
 [paths]
-workflow_template = "urbanhiphop-身体先听懂.json"
-runs_dir = "songforge/data/runs"
-tmp_dir = "songforge/data/tmp"
-lyrics_dir = "songforge/input/lyrics"
-qc_cache_dir = "songforge/cache/qc"
-style_cache_dir = "songforge/cache/style"
-index_dir = "songforge/index"
-catalog_file = "songforge/index/catalog.jsonl"
-baseline_dir = "songforge/config/baseline"
+workflow_template = "workflows/template.json"
+runs_dir = "data/runs"
+tmp_dir = "data/tmp"
+lyrics_dir = "input/lyrics"
+qc_cache_dir = "cache/qc"
+style_cache_dir = "cache/style"
+index_dir = "index"
+catalog_file = "index/catalog.jsonl"
+baseline_dir = "config/baseline"
 output_prefix = "MyMusic"
 output_format = "flac"
 

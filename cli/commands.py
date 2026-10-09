@@ -27,8 +27,10 @@ def cmd_doctor(args):
     root = layout["comfy_root"]
     log.info("doctor 开始", server=cfg["engine"]["server"])
     print("== 路径 ==")
+    print("  仓根 PKG     %s" % layout["pkg"])
     print("  ComfyUI 根  %s" % root)
-    print("  workflows   %s" % ROOT)
+    print("  Comfy 服务  %s" % cfg["engine"]["server"])
+    print("  模板        %s" % layout["template"])
     print("  runs        %s  (按日 YYYY-MM-DD/)" % layout["runs"])
     print("  tmp         %s" % layout["tmp"])
     print("  lyrics      %s" % layout["lyrics"])
@@ -36,8 +38,8 @@ def cmd_doctor(args):
     print("  catalog     %s" % layout["catalog"])
     print("  qc_cache    %s" % layout["qc_cache"])
     print("  音频输出    %s" % layout["audio_out"])
-    local_toml = os.path.join(ROOT, "songforge", "config", "local.toml")
-    local_json = os.path.join(ROOT, "songforge", "config", "local.json")
+    local_toml = os.path.join(pmod.PKG_ROOT, "config", "local.toml")
+    local_json = os.path.join(pmod.PKG_ROOT, "config", "local.json")
     if os.path.isfile(local_toml):
         print("  local.toml  有")
     elif os.path.isfile(local_json):
@@ -45,6 +47,8 @@ def cmd_doctor(args):
     else:
         print("  local.toml  无（复制 config/local.toml.example）")
     print("  CLI python  %s" % loader.python_hint())
+    qc_py = (cfg.get("paths") or {}).get("qc_python")
+    print("  QC python   %s" % (qc_py or "（未配置，qc 时自动探测）"))
 
     print("== 根目录卫生 ==")
     pkg = layout["pkg"]
@@ -77,7 +81,7 @@ def cmd_doctor(args):
     print("== 模型 ==")
     ck = pmod.model_path(root, "checkpoints", cfg["model"]["checkpoint"])
     lora = pmod.model_path(root, "loras", cfg["model"]["lora"])
-    tpl = os.path.join(ROOT, cfg["paths"]["workflow_template"])
+    tpl = layout["template"]
     rc = 0
     for label, p in (("checkpoint", ck), ("lora", lora),
                      ("template", tpl)):
@@ -271,7 +275,7 @@ def cmd_gen(args):
              cap_ratio=round(stats["fill"], 3),
              instrumental=inst, density_profile=prof or "default")
 
-    template = wfmod.load_template(cfg["paths"]["workflow_template"])
+    template = wfmod.load_template(cfg["paths"]["workflow_template"], cfg=cfg)
     prefix = cfg["paths"]["output_prefix"]
     fmt = cfg["paths"]["output_format"]
     seed_base = args.seed if args.seed else random.randint(1, 2 ** 31 - 1)

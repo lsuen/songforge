@@ -17,8 +17,10 @@ try:
 except ModuleNotFoundError:  # Python < 3.11
     import tomli as tomllib  # type: ignore
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-CONFIG_DIR = os.path.join(ROOT, "songforge", "config")
+# config/loader.py -> 仓根
+PKG_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = PKG_ROOT
+CONFIG_DIR = os.path.join(PKG_ROOT, "config")
 
 DEFAULTS = {
     "engine": {"server": "http://127.0.0.1:8188", "timeout_sec": 3600,
@@ -33,15 +35,15 @@ DEFAULTS = {
     "encode": {"cfg_scale": 3.0, "temperature": 0.68, "top_p": 0.88,
                "top_k": 50, "min_p": 0.02, "generate_audio_codes": True,
                "timesignature": "4"},
-    "paths": {"workflow_template": "urbanhiphop-身体先听懂.json",
-              "runs_dir": "songforge/data/runs",
-              "tmp_dir": "songforge/data/tmp",
-              "lyrics_dir": "songforge/input/lyrics",
-              "qc_cache_dir": "songforge/cache/qc",
-              "style_cache_dir": "songforge/cache/style",
-              "index_dir": "songforge/index",
-              "catalog_file": "songforge/index/catalog.jsonl",
-              "baseline_dir": "songforge/config/baseline",
+    "paths": {"workflow_template": "workflows/template.json",
+              "runs_dir": "data/runs",
+              "tmp_dir": "data/tmp",
+              "lyrics_dir": "input/lyrics",
+              "qc_cache_dir": "cache/qc",
+              "style_cache_dir": "cache/style",
+              "index_dir": "index",
+              "catalog_file": "index/catalog.jsonl",
+              "baseline_dir": "config/baseline",
               "comfy_root": None,
               "qc_python": None,
               "music_dir": None,

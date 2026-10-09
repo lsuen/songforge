@@ -16,7 +16,7 @@ from .common import ROOT, now_id
 # 素材库迁到 _archive/lyrics_corpus 后，selftest 仍读包内 probe。
 # 旧文件名 02_InstLowChill.txt 已不在树里，以现有 03 为准。
 _CHILL_DEMO = os.path.join(
-    ROOT, "songforge", "lyrics", "probe", "03_InstLowChill6.txt")
+    ROOT, "lyrics", "probe", "03_InstLowChill6.txt")
 
 
 def _t_runid():
@@ -79,13 +79,16 @@ def _t_path_layout():
     layout = pmod.path_layout(cfg)
     runs_n = layout["runs"].replace("\\", "/")
     tmp_n = layout["tmp"].replace("\\", "/")
-    assert runs_n.endswith("songforge/data/runs"), "runs 路径异常: %s" % runs_n
-    assert tmp_n.endswith("songforge/data/tmp"), "tmp 路径异常: %s" % tmp_n
+    assert runs_n.replace("\\", "/").endswith("/data/runs") or \
+        runs_n.endswith("data/runs"), "runs 路径异常: %s" % runs_n
+    assert tmp_n.replace("\\", "/").endswith("/data/tmp") or \
+        tmp_n.endswith("data/tmp"), "tmp 路径异常: %s" % tmp_n
     assert os.path.isdir(layout["baseline"]), "baseline 目录缺失: %s" % layout["baseline"]
+    assert os.path.isfile(layout["template"]), "模板缺失: %s" % layout["template"]
     for name in ("qc_baseline.json", "qc_baseline_old.json", "style_ref.json"):
         assert os.path.isfile(os.path.join(layout["baseline"], name)), \
             "缺少基线文件 %s" % name
-    return [("目录布局", "data/runs|tmp + baseline + catalog 已从 config.paths 解析")]
+    return [("目录布局", "仓根 data/ + baseline + 包内模板 已解析")]
 
 
 def _t_paths():
@@ -648,7 +651,7 @@ def _t_parity():
     oapi = old.convert(owf)
 
     cfg = loader.load({})
-    template = wfmod.load_template(cfg["paths"]["workflow_template"])
+    template = wfmod.load_template(cfg["paths"]["workflow_template"], cfg=cfg)
     m = [x for x in old.META if x[0] == title][0]
     _, oseed, obpm, okey, odur, oinst = m
     nwf = wfmod.build_workflow(
@@ -686,22 +689,25 @@ def _t_parity():
 
 
 def _t_fallback():
-    """fallback 资产必须仍在原位。"""
+    """包内模板 + Comfy 输出目录必须可用；旧 workflows 旁路资产可选。"""
     root = pmod.comfy_root()
-    need = [
-        os.path.join(ROOT, "song_rules.py"),
-        os.path.join(ROOT, "urbanhiphop-身体先听懂.json"),
-        pmod.output_dir(root, "MyMusic"),
+    bundled = os.path.join(pmod.PKG_ROOT, "workflows", "template.json")
+    music = pmod.output_dir(root, "MyMusic")
+    if not os.path.isfile(bundled):
+        return [("fallback 资产", "FAIL 缺包内模板 %s" % bundled)]
+    if not os.path.isdir(music):
+        os.makedirs(music, exist_ok=True)
+    host = pmod.comfy_workflows_dir()
+    legacy = [
+        os.path.join(host, "song_rules.py"),
+        os.path.join(host, "urbanhiphop-身体先听懂.json"),
     ]
-    missing = [p for p in need if not os.path.exists(p)]
-    bak_root = os.path.join(ROOT, "bak")
+    legacy_ok = sum(1 for p in legacy if os.path.isfile(p))
+    bak_root = os.path.join(host, "bak")
     stamps = sorted(os.listdir(bak_root)) if os.path.isdir(bak_root) else []
-    if missing:
-        return [("fallback 资产", "FAIL 缺失 %s" % missing)]
-    if not stamps:
-        return [("fallback 资产", "FAIL bak 目录为空")]
-    return [("fallback 资产", "song_rules.py / 模板 / output/MyMusic 就位，bak %d 份"
-             % len(stamps))]
+    return [("fallback 资产",
+             "包内模板 + MyMusic 就位；Comfy workflows 旧资产 %d/2，bak %d 份"
+             % (legacy_ok, len(stamps)))]
 
 
 def _t_window():

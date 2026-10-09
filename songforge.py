@@ -1,15 +1,24 @@
 # -*- coding: utf-8 -*-
-"""songforge CLI 入口（被 ComfyUI 升级清空后重建）。
+"""songforge CLI 入口。
 
-    python songforge\songforge.py doctor
-    python songforge\songforge.py gen --style pop --title 夜班 --lyrics-file a.txt
+任意目录 clone 后：
+
+    cd D:\\CodeFiles\\ProProjects\\songforge
+    copy config\\local.toml.example config\\local.toml   # 填 comfy_root / server
+    .\\.venv\\Scripts\\python.exe songforge.py doctor
+
+也可在父目录执行：python songforge\\songforge.py ...
 """
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_PARENT = os.path.dirname(_HERE)
+# 包名 = 文件夹名：把父目录加入 path，使 `import songforge` 指向本仓
+if _PARENT not in sys.path:
+    sys.path.insert(0, _PARENT)
 
-from songforge.cli.main import main   # noqa: E402
+from songforge.cli.main import main  # noqa: E402
 
 if __name__ == "__main__":
     sys.exit(main())

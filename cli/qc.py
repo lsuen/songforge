@@ -35,8 +35,8 @@ from ..config import loader
 from ..core import catalog as catmod
 from ..core import paths as pmod
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-WORKER = os.path.join(ROOT, "songforge", "tools", "qc_worker.py")
+ROOT = pmod.PKG_ROOT
+WORKER = os.path.join(ROOT, "tools", "qc_worker.py")
 
 
 def _cfg():
@@ -112,11 +112,13 @@ def _read_manifest(run_id):
     runs = pmod.under_workflows(cfg["paths"]["runs_dir"])
     rundir = catmod.find_run_dir(runs, rid)
     if not rundir:
-        # 兼容旧路径 songforge/runs/<id>
-        legacy = os.path.join(ROOT, "songforge", "runs", rid, "manifest.json")
-        if os.path.isfile(legacy):
-            with open(legacy, encoding="utf-8") as f:
-                return json.load(f), os.path.dirname(legacy)
+        # 兼容旧扁平 runs/
+        for legacy_root in (os.path.join(ROOT, "runs", rid),
+                            os.path.join(ROOT, "data", "runs", rid)):
+            legacy = os.path.join(legacy_root, "manifest.json")
+            if os.path.isfile(legacy):
+                with open(legacy, encoding="utf-8") as f:
+                    return json.load(f), os.path.dirname(legacy)
         return None, None
     with open(os.path.join(rundir, "manifest.json"), encoding="utf-8") as f:
         return json.load(f), rundir

@@ -2,61 +2,64 @@
 
 本地 ACE-Step 生歌 CLI：锁定模型与声线 LoRA、铁律前奏注入、歌词密度硬校验、QC 验收。
 
-自己用爽是第一目标；代码按 MIT 开源，方便别人在 ComfyUI + ACE-Step 上复用同一套流水线。
+**独立项目**：clone 到任意目录，写好 `config/local.toml` 指向本机 ComfyUI，即可生成。
 
 | 文档 | 给谁 |
 |------|------|
-| [`AGENTS.md`](AGENTS.md) | Agent / 自动化（做歌时重读） |
+| [`AGENTS.md`](AGENTS.md) | Agent / 自动化 |
 | [`docs/使用手册.md`](docs/使用手册.md) | 人类操作 |
 
-## 两个 Python 环境（别混）
-
-| 环境 | 用途 | 怎么来 |
-|------|------|--------|
-| **项目 `.venv`** | CLI：`doctor` / `target` / `check` / `gen` / `catalog` | `scripts\setup_venv.ps1` |
-| **`qc_python`** | QC 音频栈（librosa / torch / demucs） | `config/local.toml` 指向 ComfyUI venv，或自建重环境 |
+## 换目录也能用（推荐）
 
 ```powershell
-# 1) 建 CLI 环境（推荐 Python 3.13 / ≥3.11）
-cd path\to\songforge
+# 1) clone（GitHub 或 Gitea）
+cd D:\CodeFiles\ProProjects
+git clone https://git.nnrc.ren/swl/songforge.git
+cd songforge
+
+# 2) CLI 环境（Python >= 3.11）
 .\scripts\setup_venv.ps1
 
-# 2) 本机路径
+# 3) 本机 ComfyUI 连接（只改这一份）
 copy config\local.toml.example config\local.toml
-# 编辑 comfy_root / qc_python / music_dir
+# 编辑：
+#   [engine] server = "http://127.0.0.1:8188"
+#   [paths]  comfy_root / qc_python / music_dir
 
-# 3) 工作目录：包的父目录（文件夹名必须是 songforge）
-cd ..
-.\songforge\.venv\Scripts\python.exe songforge\songforge.py doctor
+# 4) 先起 ComfyUI，再体检
+.\.venv\Scripts\python.exe songforge.py doctor
 ```
 
-嵌套在 ComfyUI 时父目录就是 `user\default\workflows`。
+只要 ComfyUI 在跑、`local.toml` 里 `comfy_root` 指向正确安装根（含 `models/checkpoints` 与 LoRA），**不必**把本仓放进 ComfyUI 的 `user/default/workflows`。
+
+## 两个 Python 环境
+
+| 环境 | 用途 |
+|------|------|
+| **本仓 `.venv`** | CLI：`doctor` / `check` / `gen` / `catalog` |
+| **`qc_python`** | QC 音频栈（可继续用 ComfyUI 的 venv） |
 
 ## 配置：TOML vs JSON
 
-| 文件 | 格式 | 作用 |
-|------|------|------|
-| `config/default.toml` | **TOML** | 算法 / 采样 / 相对路径（可提交） |
-| `config/local.toml` | **TOML** | 本机绝对路径（gitignore） |
-| `config/styles.json` `lexicon.json` | JSON | 风格字典 / 禁词（数据） |
-| `config/baseline/*.json` | JSON | QC 基线数值 |
-| `workflows/*.json` 与 Comfy 模板 | JSON | **只有** workflow 图用 JSON |
+| 文件 | 作用 |
+|------|------|
+| `config/default.toml` | 算法 / 相对路径（相对**本仓根**） |
+| `config/local.toml` | 本机 Comfy 根、服务地址、QC Python（gitignore） |
+| `workflows/template.json` | 包内 workflow 图（JSON，与配置分流） |
+| `config/baseline/*.json` | QC 基线数据 |
 
-优先级：`命令行 > SONGFORGE_* > local.toml > default.toml > DEFAULTS`  
-（仍可读旧的 `local.json` / `default.json`，同名时 TOML 覆盖。）
+优先级：`命令行 > SONGFORGE_* > local.toml > default.toml > DEFAULTS`
 
-## 30 秒流水线
+## 流水线
 
 ```powershell
-python songforge\songforge.py doctor
-python songforge\songforge.py target --style pop --bpm 104 --dur 180
-python songforge\songforge.py check --style pop --title 歌名 --lyrics-file songforge\input\lyrics\歌名.txt
-python songforge\songforge.py gen   --style pop --title 歌名 --lyrics-file songforge\input\lyrics\歌名.txt
-python songforge\songforge.py qc    --run gen-<时间戳> --baseline
-python songforge\songforge.py catalog --limit 20
+.\.venv\Scripts\python.exe songforge.py target --style pop --bpm 104 --dur 180
+.\.venv\Scripts\python.exe songforge.py check --style pop --title 歌名 --lyrics-file input\lyrics\歌名.txt
+.\.venv\Scripts\python.exe songforge.py gen   --style pop --title 歌名 --lyrics-file input\lyrics\歌名.txt
+.\.venv\Scripts\python.exe songforge.py qc    --run gen-<时间戳> --baseline
 ```
 
-`qc` 必须带 `--baseline`。
+`qc` 必须带 `--baseline`。音频写到 ComfyUI `output/MyMusic/`（可用 `music_dir` 覆盖）。
 
 ## 硬约束（摘要）
 
@@ -67,29 +70,21 @@ python songforge\songforge.py catalog --limit 20
 | 时长 | 完整歌 150–200 秒 |
 | 前奏 | 8 小节器乐 hook；CLI 自动注入 |
 
-## 目录（项目 vs 数据）
+## 目录
 
 ```
-songforge/                 # Git 仓根 = 包根
-  config/default.toml      # 算法配置
+songforge/                 # clone 下来的仓根 = 包根
+  config/default.toml
   config/local.toml        # 本机（勿提交）
-  config/baseline/         # QC 基线
-  cli/ core/ rules/ ...
   data/runs/YYYY-MM-DD/    # gen 产物
-  data/tmp/YYYY-MM-DD/     # doctor/check
-  index/catalog.jsonl
-  workflows/template.json  # 包内备用模板
-  .venv/                   # CLI 专用（勿提交）
-  .secrets/                # 本地 token（勿提交）
+  workflows/template.json
+  .venv/
 ```
 
-音频成品仍在 ComfyUI `output/MyMusic/`（可用 `music_dir` 覆盖）。
+## 远程
 
-## Git
-
-- `main`：项目资产  
-- `archive/full-snapshot`：本地过程数据备份，**不要 push**  
-- `.secrets/`、`config/local.toml`、`.venv/`、`data/**` 均已 ignore  
+- GitHub: https://github.com/lsuen/songforge  
+- Gitea: https://git.nnrc.ren/swl/songforge  
 
 ## License
 

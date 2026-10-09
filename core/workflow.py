@@ -7,8 +7,9 @@ import os
 import re
 
 from .errors import ConfigError
+from . import paths as pmod
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT = pmod.PKG_ROOT
 
 # UI widgets_values 顺序 -> API inputs 键名。按节点类型分别声明，避免混用。
 WIDGET_MAP = {
@@ -29,13 +30,13 @@ WIDGET_MAP = {
 }
 
 
-def load_template(path_or_name):
-    """path_or_name 可以是 workflows 下的文件名，也可以是绝对路径。"""
-    p = path_or_name
-    if not os.path.isabs(p):
-        p = os.path.join(ROOT, p)
-    if not os.path.exists(p):
-        raise ConfigError("workflow 模板不存在: %s" % p)
+def load_template(path_or_name, cfg=None):
+    """path_or_name：仓内相对路径 / Comfy workflows 文件名 / 绝对路径。"""
+    p = pmod.resolve_template(path_or_name, cfg=cfg)
+    if not os.path.isfile(p):
+        raise ConfigError(
+            "workflow 模板不存在: %s（已试仓内 workflows/ 与 ComfyUI workflows）"
+            % path_or_name)
     with open(p, encoding="utf-8") as f:
         return json.load(f)
 

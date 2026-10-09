@@ -10,7 +10,7 @@ from ..core import workflow as wfmod
 from ..core.errors import ConfigError
 from ..log.logger import Logger, Run
 
-ROOT = wfmod.ROOT
+ROOT = pmod.PKG_ROOT
 
 # chill 吟唱（第三张专辑）的前奏小节数。
 #

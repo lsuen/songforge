@@ -8,8 +8,8 @@ from . import paths as pmod
 
 
 def catalog_path(cfg):
-    p = cfg["paths"].get("catalog_file") or "songforge/index/catalog.jsonl"
-    return pmod.under_workflows(p)
+    p = cfg["paths"].get("catalog_file") or "index/catalog.jsonl"
+    return pmod.under_pkg(p)
 
 
 def day_dir(runs_root, day=None):
