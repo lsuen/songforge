@@ -2,7 +2,11 @@
 
 本地创作者用的 AI 歌曲生成 CLI。固定模型 + 铁律注入 + 密度硬校验 + QC 验收，稳定产出带专属声线的完整歌曲。
 
-本目录是**独立 Git 仓**（`main` 只跟踪项目资产；大体量过程数据在 `archive/full-snapshot`，勿默认 push）。
+本目录是**独立 Git 仓**：
+
+- `main`：只跟踪项目资产（代码 / `config/` / 基线 / 文档）
+- `archive/full-snapshot`：本地备份过程数据（`data/`、`index/catalog.jsonl`、`_archive/`）；**勿默认 push**
+- `cache/` 可重建（约数 GB），不进 archive
 
 | 文档 | 给谁 |
 |------|------|
