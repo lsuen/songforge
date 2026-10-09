@@ -2,7 +2,8 @@
 """songforge CLI 驱动（薄调度层）。
 
 命令：
-    doctor / styles / target / check / gen / runs / show / catalog / qc / selftest
+    doctor / styles / target / check / gen / runs / show / catalog /
+    prune / qc / selftest
 
 设计约束：所有业务参数来自配置/命令行，本文件不写死任何模型或采样常量。
 实现见 common / assemble / commands / selftest / qc。
@@ -19,7 +20,7 @@ def build_parser():
     p = argparse.ArgumentParser(
         prog="songforge",
         description="ACE-Step 生歌引擎。配置优先级：命令行 > 环境变量 > "
-                    "local.json > default.json")
+                    "local.toml > default.toml")
     p.add_argument("--server", help="ComfyUI 地址")
     p.add_argument("--log-level", default="info",
                    choices=["debug", "info", "warn", "error"])
@@ -134,6 +135,16 @@ def build_parser():
     cat.add_argument("--rebuild", action="store_true",
                      help="从 data/runs 扫描重建 catalog.jsonl")
     cat.set_defaults(func=cmds.cmd_catalog)
+
+    pr = sub.add_parser("prune", help="清理过期 data/tmp（不动 runs/音频）")
+    pr.add_argument("--days", type=int, default=7,
+                    help="保留最近 N 天的 tmp 日目录（默认 7）")
+    pr.add_argument("--dry-run", dest="dry_run", action="store_true",
+                    help="只列出将删除的目录")
+    pr.add_argument("--include-migrated", dest="include_migrated",
+                    action="store_true",
+                    help="一并删除 tmp/_migrated 等非日期目录")
+    pr.set_defaults(func=cmds.cmd_prune)
 
     from .qc import add_qc
     add_qc(sub)

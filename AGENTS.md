@@ -55,12 +55,9 @@ git clone https://git.nnrc.ren/swl/songforge.git
 # 或 https://github.com/lsuen/songforge.git
 cd songforge
 
-.\scripts\setup_venv.ps1
-copy config\local.toml.example config\local.toml
-# 编辑 local.toml：engine.server / paths.comfy_root / qc_python / music_dir
-
-# 用户需先启动本机 ComfyUI
-.\.venv\Scripts\python.exe songforge.py doctor
+.\scripts\doctor_all.ps1
+# 缺 local.toml 时会复制 example 并退出；编辑并启动 ComfyUI 后再跑
+# 模型文件名见 README「需要的模型」；没有作者 LoRA 时先问用户
 ```
 
 入口（在**仓根**）：
@@ -156,16 +153,21 @@ doctor → target → 写歌词 → check → gen → qc --baseline
 |------|------|
 | 无 local.toml | **问用户**路径后创建并填写 |
 | doctor FAIL 服务 | 请用户启动 ComfyUI；核对 server |
-| doctor FAIL 模型 | **问**模型是否在该 comfy_root |
+| doctor FAIL 模型 | **问**模型是否在该 comfy_root；对照 README 文件名 |
 | check 密度失败 | 改歌词到 target 区间 |
 | gen 提交失败 | `selftest`；必要时 `--dry-run` |
 | qc voice_nn=null | 补 `--baseline` |
 | qc FAIL | 修歌/重 gen，**不**改阈值；反复失败则**问用户**听哪一版 |
+| tmp 太肥 | `prune --days 7`（不动 runs/音频） |
 | CLI 像坏了 | `selftest`；仍异常则**问用户**并贴 log |
+| 要 push | **问**推 `gitea` 还是 GitHub；勿推 secrets/archive |
 
 ```powershell
 .\.venv\Scripts\python.exe songforge.py selftest
+.\.venv\Scripts\python.exe songforge.py prune --days 7 --dry-run
 ```
+
+冒烟歌词：`input/lyrics/pop_灯还亮着.txt`。
 
 ---
 

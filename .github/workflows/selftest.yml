@@ -1,0 +1,37 @@
+name: selftest
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install
+        run: |
+          python -m pip install -U pip
+          pip install -r requirements.txt
+      - name: Stub ComfyUI layout
+        run: |
+          mkdir -p models/checkpoints models/loras output/MyMusic user/default/workflows/bak
+          touch models/checkpoints/ace_step_1.5_turbo_swl_fused.safetensors
+          touch models/loras/swl_voice_best_ep257.safetensors
+          touch user/default/workflows/song_rules.py
+          touch "user/default/workflows/urbanhiphop-身体先听懂.json"
+          echo stub > user/default/workflows/bak/ci-stub
+      - name: Layout for package import
+        run: |
+          mkdir -p /tmp/sfwrap
+          ln -s "$GITHUB_WORKSPACE" /tmp/sfwrap/songforge
+      - name: selftest
+        working-directory: /tmp/sfwrap
+        run: python songforge/songforge.py selftest
+        env:
+          SONGFORGE_COMFY_ROOT: ${{ github.workspace }}

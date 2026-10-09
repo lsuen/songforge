@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-"""CLI 命令实现：doctor / styles / target / check / gen / runs / show。"""
+"""CLI 命令实现：doctor / styles / target / check / gen / runs / show / prune。"""
 import datetime
 import json
 import os
 import random
+import shutil
 
 from ..config import loader
 from ..core import catalog as catmod
@@ -83,12 +84,23 @@ def cmd_doctor(args):
     lora = pmod.model_path(root, "loras", cfg["model"]["lora"])
     tpl = layout["template"]
     rc = 0
+    missing = []
     for label, p in (("checkpoint", ck), ("lora", lora),
                      ("template", tpl)):
         good = os.path.exists(p)
         print("  [%s] %-11s %s" % ("ok" if good else "FAIL", label, p))
         if not good:
             rc = 2
+            missing.append((label, p))
+    if missing:
+        print("  ----")
+        print("  缺模型/模板时：")
+        print("  1) 确认 config/local.toml 的 paths.comfy_root 指向 ComfyUI 安装根")
+        print("  2) 放入锁定文件（文件名需一致，或改 default.toml 并接受声线变化）：")
+        print("       models/checkpoints/%s" % cfg["model"]["checkpoint"])
+        print("       models/loras/%s" % cfg["model"]["lora"])
+        print("  3) 本仓默认声线 LoRA 为作者定制；他人需自备同名或替换")
+        print("  4) 路径不清楚 → 问用户，不要猜盘符")
     if cfg["model"]["checkpoint"] in cfg["model"]["denied_checkpoints"]:
         print("  [FAIL] 当前 checkpoint 在禁用名单里：%s"
               % cfg["model"]["checkpoint"])
@@ -437,4 +449,51 @@ def cmd_catalog(args):
               % (d.get("date"), d.get("run_id"), d.get("title"),
                  d.get("bpm"), d.get("duration"),
                  d.get("qc_verdict") or "-", d.get("style")))
+    return 0
+
+
+def cmd_prune(args):
+    """清理过期 data/tmp（默认不动 runs / 音频）。"""
+    cfg = loader.load({})
+    tmp_root = pmod.under_pkg(cfg["paths"]["tmp_dir"])
+    if not os.path.isdir(tmp_root):
+        print("tmp 目录不存在: %s" % tmp_root)
+        return 0
+    keep_days = int(args.days)
+    cutoff = datetime.date.today() - datetime.timedelta(days=keep_days)
+    removed = []
+    skipped = []
+    for name in sorted(os.listdir(tmp_root)):
+        path = os.path.join(tmp_root, name)
+        if not os.path.isdir(path):
+            continue
+        # YYYY-MM-DD 或 _migrated
+        day = None
+        try:
+            day = datetime.date.fromisoformat(name)
+        except ValueError:
+            if name.startswith("_") and args.include_migrated:
+                day = cutoff  # 当作过期
+            else:
+                skipped.append(name)
+                continue
+        if day >= cutoff:
+            continue
+        if args.dry_run:
+            removed.append(path + " (dry-run)")
+            continue
+        shutil.rmtree(path, ignore_errors=False)
+        removed.append(path)
+    print("tmp_root  %s" % tmp_root)
+    print("keep_days %d  (删除早于 %s 的日目录)" % (keep_days, cutoff))
+    if not removed:
+        print("无需清理")
+    else:
+        for p in removed:
+            print("  - %s" % p)
+        print("已处理 %d 项%s" % (len(removed),
+                                 "（dry-run 未删）" if args.dry_run else ""))
+    if skipped:
+        print("跳过非日期目录: %s" % ", ".join(skipped[:8]))
+    print("未动 data/runs 与 Comfy 音频输出")
     return 0
