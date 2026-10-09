@@ -189,7 +189,11 @@ def _campplus():
         return _S["campplus"]
     import torch
     root = os.environ.get("SONGFORGE_COMFY_ROOT") or os.environ.get(
-        "COMFY_ROOT") or r"D:\CodeFiles\Thinking\ComfyUI-MiniMaxH3"
+        "COMFY_ROOT")
+    if not root:
+        raise RuntimeError(
+            "缺少 SONGFORGE_COMFY_ROOT（由 songforge qc 注入，或写在 "
+            "config/local.toml 的 paths.comfy_root）")
     for p in (root, os.path.dirname(os.path.abspath(__file__))):
         sys.path.insert(0, p)
         sys.path.insert(0, os.path.join(p, "custom_nodes",

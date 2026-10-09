@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "songforge"
+version = "0.2.0"
+description = "Local ACE-Step song generation CLI with locked voice LoRA, density checks, and QC."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "lsuen" }]
+keywords = ["comfyui", "ace-step", "music", "lyrics", "cli"]
+dependencies = [
+  "tomli>=2.0.1; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+qc = [
+  "librosa>=0.10",
+  "soundfile>=0.12",
+  "numpy>=1.24",
+]
+
+[project.urls]
+Homepage = "https://github.com/lsuen/songforge"
+Repository = "https://github.com/lsuen/songforge"
+
+# 入口：在父目录执行 `python songforge/songforge.py`（包名=文件夹名）。
+# 或仓库内：`.\.venv\Scripts\python.exe songforge.py`（脚本会把父目录加入 sys.path）。

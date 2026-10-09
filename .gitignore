@@ -1,5 +1,13 @@
-# --- 本机覆盖（勿提交）---
+# --- 本机覆盖 / 密钥（永不提交）---
+config/local.toml
 config/local.json
+.secrets/
+*.token
+
+# --- 项目 venv ---
+.venv/
+venv/
+env/
 
 # --- 过程与缓存（保留 .gitkeep 占位）---
 data/**
@@ -32,6 +40,8 @@ __pycache__/
 *.egg-info/
 .pytest_cache/
 .codebase-index/
+dist/
+build/
 
 # --- 编辑器 / OS ---
 .DS_Store
@@ -40,6 +50,6 @@ Thumbs.db
 .vscode/
 *.swp
 
-# --- 索引占位 ---
+# --- 占位 ---
 !index/.gitkeep
 !input/lyrics/.gitkeep

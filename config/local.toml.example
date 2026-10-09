@@ -1,0 +1,10 @@
+# 复制为 local.toml（已 gitignore）。只放本机绝对路径，勿提交。
+# CLI 用项目 .venv；QC 音频栈可继续指向 ComfyUI 专用 venv。
+
+[paths]
+comfy_root = "D:/CodeFiles/Thinking/ComfyUI-MiniMaxH3"
+qc_python = "C:/comfyui-venv/Scripts/python.exe"
+music_dir = "D:/CodeFiles/Thinking/ComfyUI-MiniMaxH3/output/MyMusic"
+
+[engine]
+server = "http://127.0.0.1:8188"

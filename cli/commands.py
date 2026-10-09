@@ -36,8 +36,15 @@ def cmd_doctor(args):
     print("  catalog     %s" % layout["catalog"])
     print("  qc_cache    %s" % layout["qc_cache"])
     print("  音频输出    %s" % layout["audio_out"])
-    local_cfg = os.path.join(ROOT, "songforge", "config", "local.json")
-    print("  local.json  %s" % ("有" if os.path.isfile(local_cfg) else "无（可用 local.json.example）"))
+    local_toml = os.path.join(ROOT, "songforge", "config", "local.toml")
+    local_json = os.path.join(ROOT, "songforge", "config", "local.json")
+    if os.path.isfile(local_toml):
+        print("  local.toml  有")
+    elif os.path.isfile(local_json):
+        print("  local.json  有（建议迁到 local.toml）")
+    else:
+        print("  local.toml  无（复制 config/local.toml.example）")
+    print("  CLI python  %s" % loader.python_hint())
 
     print("== 根目录卫生 ==")
     pkg = layout["pkg"]

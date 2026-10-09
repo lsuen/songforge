@@ -1,0 +1,4 @@
+# songforge CLI（轻量）。Python >= 3.11（推荐 3.13）。
+# QC 音频栈默认走 config/local.toml 的 qc_python（如 ComfyUI venv），不必装进本环境。
+
+tomli>=2.0.1; python_version < "3.11"

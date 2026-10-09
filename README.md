@@ -1,26 +1,53 @@
 # songforge
 
-本地创作者用的 AI 歌曲生成 CLI。固定模型 + 铁律注入 + 密度硬校验 + QC 验收，稳定产出带专属声线的完整歌曲。
+本地 ACE-Step 生歌 CLI：锁定模型与声线 LoRA、铁律前奏注入、歌词密度硬校验、QC 验收。
 
-本目录是**独立 Git 仓**：
-
-- `main`：只跟踪项目资产（代码 / `config/` / 基线 / 文档）
-- `archive/full-snapshot`：本地备份过程数据（`data/`、`index/catalog.jsonl`、`_archive/`）；**勿默认 push**
-- `cache/` 可重建（约数 GB），不进 archive
+自己用爽是第一目标；代码按 MIT 开源，方便别人在 ComfyUI + ACE-Step 上复用同一套流水线。
 
 | 文档 | 给谁 |
 |------|------|
-| [`AGENTS.md`](AGENTS.md) | **远程 / channel Agent**（上下文不够时重读这份做歌） |
-| [`../生歌规则.md`](../生歌规则.md) | 参数/铁律/踩坑唯一规范 |
-| [`docs/使用手册.md`](docs/使用手册.md) | 人类操作手册 |
+| [`AGENTS.md`](AGENTS.md) | Agent / 自动化（做歌时重读） |
+| [`docs/使用手册.md`](docs/使用手册.md) | 人类操作 |
 
-## 30 秒上手
+## 两个 Python 环境（别混）
 
-工作目录必须是 `user/default/workflows`：
+| 环境 | 用途 | 怎么来 |
+|------|------|--------|
+| **项目 `.venv`** | CLI：`doctor` / `target` / `check` / `gen` / `catalog` | `scripts\setup_venv.ps1` |
+| **`qc_python`** | QC 音频栈（librosa / torch / demucs） | `config/local.toml` 指向 ComfyUI venv，或自建重环境 |
 
 ```powershell
-cd D:\CodeFiles\Thinking\ComfyUI-MiniMaxH3\user\default\workflows
+# 1) 建 CLI 环境（推荐 Python 3.13 / ≥3.11）
+cd path\to\songforge
+.\scripts\setup_venv.ps1
 
+# 2) 本机路径
+copy config\local.toml.example config\local.toml
+# 编辑 comfy_root / qc_python / music_dir
+
+# 3) 工作目录：包的父目录（文件夹名必须是 songforge）
+cd ..
+.\songforge\.venv\Scripts\python.exe songforge\songforge.py doctor
+```
+
+嵌套在 ComfyUI 时父目录就是 `user\default\workflows`。
+
+## 配置：TOML vs JSON
+
+| 文件 | 格式 | 作用 |
+|------|------|------|
+| `config/default.toml` | **TOML** | 算法 / 采样 / 相对路径（可提交） |
+| `config/local.toml` | **TOML** | 本机绝对路径（gitignore） |
+| `config/styles.json` `lexicon.json` | JSON | 风格字典 / 禁词（数据） |
+| `config/baseline/*.json` | JSON | QC 基线数值 |
+| `workflows/*.json` 与 Comfy 模板 | JSON | **只有** workflow 图用 JSON |
+
+优先级：`命令行 > SONGFORGE_* > local.toml > default.toml > DEFAULTS`  
+（仍可读旧的 `local.json` / `default.json`，同名时 TOML 覆盖。）
+
+## 30 秒流水线
+
+```powershell
 python songforge\songforge.py doctor
 python songforge\songforge.py target --style pop --bpm 104 --dur 180
 python songforge\songforge.py check --style pop --title 歌名 --lyrics-file songforge\input\lyrics\歌名.txt
@@ -29,7 +56,7 @@ python songforge\songforge.py qc    --run gen-<时间戳> --baseline
 python songforge\songforge.py catalog --limit 20
 ```
 
-`qc` 必须带 `--baseline`。首次本机复制 `config/local.json.example` → `config/local.json` 填 Comfy 根与 QC Python。
+`qc` 必须带 `--baseline`。
 
 ## 硬约束（摘要）
 
@@ -39,44 +66,31 @@ python songforge\songforge.py catalog --limit 20
 | 采样 | shift=5.5 / steps=28 / cfg=2.0 / temperature=0.68 |
 | 时长 | 完整歌 150–200 秒 |
 | 前奏 | 8 小节器乐 hook；CLI 自动注入 |
-| 配置 | 算法锁 `config/default.json`；本机路径 `config/local.json` |
 
-## 项目资产 vs 过程数据
-
-| 级别 | 路径 | 是否进 `main` |
-|------|------|----------------|
-| 项目 | `cli/` `core/` `config/*.json`（除 local） `config/baseline/` `workflows/` `docs/` | 是 |
-| 本机 | `config/local.json` | 否（gitignore） |
-| 过程 | `data/runs/YYYY-MM-DD/gen-*/` `data/tmp/` | 否 |
-| 索引 | `index/catalog.jsonl` | 否（可 `--rebuild`） |
-| 缓存 | `cache/qc` `cache/style` | 否 |
-| 音频 | ComfyUI `output/MyMusic/` | 不在包内 |
+## 目录（项目 vs 数据）
 
 ```
-songforge/
-  AGENTS.md / README.md / songforge.py
-  config/                 # default + styles + lexicon + local.example
-    baseline/             # qc_baseline*.json + style_ref.json
-    local.json            # 本机路径（勿提交）
-  cli/ core/ rules/ lyrics/
-  input/lyrics/           # 新歌词投放
-  data/runs/YYYY-MM-DD/   # gen 正式产物
-  data/tmp/YYYY-MM-DD/    # doctor/check 会话
-  index/catalog.jsonl     # 全局元数据索引
-  cache/                  # QC / 风格特征
-  docs/ _archive/
+songforge/                 # Git 仓根 = 包根
+  config/default.toml      # 算法配置
+  config/local.toml        # 本机（勿提交）
+  config/baseline/         # QC 基线
+  cli/ core/ rules/ ...
+  data/runs/YYYY-MM-DD/    # gen 产物
+  data/tmp/YYYY-MM-DD/     # doctor/check
+  index/catalog.jsonl
+  workflows/template.json  # 包内备用模板
+  .venv/                   # CLI 专用（勿提交）
+  .secrets/                # 本地 token（勿提交）
 ```
 
-## 配置优先级
+音频成品仍在 ComfyUI `output/MyMusic/`（可用 `music_dir` 覆盖）。
 
-```
-命令行 > SONGFORGE_* 环境变量 > config/local.json > config/default.json > DEFAULTS
-```
+## Git
 
-模型与采样铁律只在 `default.json`，不要放进 local。
+- `main`：项目资产  
+- `archive/full-snapshot`：本地过程数据备份，**不要 push**  
+- `.secrets/`、`config/local.toml`、`.venv/`、`data/**` 均已 ignore  
 
-## 日志
+## License
 
-- `gen` → `data/runs/<日>/<run_id>/run.log`（JSONL）
-- `doctor` / `check` → `data/tmp/<日>/<cmd>-*/run.log`
-- `--log-level` / `--quiet` 全局生效
+MIT — 见 [LICENSE](LICENSE)。

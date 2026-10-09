@@ -1,13 +1,21 @@
 # -*- coding: utf-8 -*-
 """配置加载与覆盖。
 
-优先级：命令行 > 环境变量 > local.json > default.json > 内置 DEFAULTS。
+优先级：命令行 > 环境变量 > local.toml|json > default.toml|json > DEFAULTS。
 
-local.json 放本机绝对路径（gitignore），见 local.json.example。
+算法配置用 TOML（与 ComfyUI workflow JSON 分流）。
+styles.json / lexicon.json / baseline/*.json 仍是数据文件，保持 JSON。
+本机绝对路径只写 local.toml（gitignore）。
 """
 import copy
 import json
 import os
+import sys
+
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python < 3.11
+    import tomli as tomllib  # type: ignore
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CONFIG_DIR = os.path.join(ROOT, "songforge", "config")
@@ -69,19 +77,35 @@ def _deep_merge(base, patch):
     return base
 
 
-def _read(name):
+def _read_json(name):
     p = os.path.join(CONFIG_DIR, name)
-    if not os.path.exists(p):
+    if not os.path.isfile(p):
         return {}
     with open(p, encoding="utf-8") as f:
         return json.load(f)
 
 
+def _read_toml(name):
+    p = os.path.join(CONFIG_DIR, name)
+    if not os.path.isfile(p):
+        return {}
+    with open(p, "rb") as f:
+        return tomllib.load(f)
+
+
+def _read_layer(basename):
+    """同名 .json 与 .toml：先 json 再 toml，toml 覆盖（迁移期兼容）。"""
+    out = {}
+    _deep_merge(out, _read_json(basename + ".json"))
+    _deep_merge(out, _read_toml(basename + ".toml"))
+    return out
+
+
 def load(overrides=None):
     """返回最终配置 dict。overrides 是 {'sampler.shift': 5.5} 这种点号路径。"""
     cfg = copy.deepcopy(DEFAULTS)
-    _deep_merge(cfg, _read("default.json"))
-    _deep_merge(cfg, _read("local.json"))
+    _deep_merge(cfg, _read_layer("default"))
+    _deep_merge(cfg, _read_layer("local"))
     _deep_merge(cfg, _env_overrides())
     if overrides:
         for path, val in overrides.items():
@@ -167,13 +191,18 @@ def _env_overrides():
 
 
 def styles():
-    return _read("styles.json")
+    return _read_json("styles.json")
 
 
 def lexicon():
-    return _read("lexicon.json")
+    return _read_json("lexicon.json")
 
 
 def baseline_path(name):
     """config/baseline/<name> 绝对路径。"""
     return os.path.join(CONFIG_DIR, "baseline", name)
+
+
+def python_hint():
+    """当前解释器信息（doctor 用）。"""
+    return "%s (%s)" % (sys.executable, sys.version.split()[0])

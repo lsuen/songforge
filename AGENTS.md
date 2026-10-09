@@ -57,13 +57,15 @@ python songforge\songforge.py qc    --run <run_id> --baseline
 | 时长 | 完整歌 **150–200** 秒（默认跟风格字典；pop 常 180） |
 | 前奏 | 8 小节器乐 hook，第一拍进鼓；CLI `assemble` 自动注入 |
 
-改算法参数只动 `config/default.json`；本机路径用 `config/local.json`（gitignore）。不要改 `data/runs/` 里的 JSON。
+改算法参数只动 `config/default.toml`；本机路径用 `config/local.toml`（gitignore）。不要改 `data/runs/` 里的过程 JSON。
 
 配置优先级：
 
 ```text
-命令行 > SONGFORGE_* > config/local.json > config/default.json > DEFAULTS
+命令行 > SONGFORGE_* > local.toml > default.toml > DEFAULTS
 ```
+
+CLI 用项目 `.venv`；QC 用 `local.toml` 的 `qc_python`（可与 ComfyUI venv 分离）。
 
 ## 4. 目录地图（项目 vs 数据）
 
