@@ -1,0 +1,96 @@
+{
+  "_comment": "songforge 唯一事实来源。改这里，不要改脚本里的硬编码常量。",
+
+  "engine": {
+    "server": "http://127.0.0.1:8188",
+    "timeout_sec": 3600,
+    "poll_interval_sec": 10,
+    "submit_retries": 3
+  },
+
+  "model": {
+    "checkpoint": "ace_step_1.5_turbo_swl_fused.safetensors",
+    "lora": "swl_voice_best_ep257.safetensors",
+    "lora_model_strength": 0.5,
+    "lora_clip_strength": 0.5,
+    "denied_checkpoints": [
+      "yue2_3b_int8_convrot.safetensors",
+      "ace_step_1.5_turbo_aio.safetensors"
+    ]
+  },
+
+  "sampler": {
+    "shift": 5.5,
+    "sampling": "flow",
+    "steps": 28,
+    "cfg": 2.0,
+    "sampler_name": "euler",
+    "scheduler": "simple",
+    "denoise": 1.0
+  },
+
+  "encode": {
+    "cfg_scale": 3.0,
+    "temperature": 0.68,
+    "top_p": 0.88,
+    "top_k": 50,
+    "min_p": 0.02,
+    "generate_audio_codes": true,
+    "timesignature": "4"
+  },
+
+  "paths": {
+    "_comment": "相对路径均相对 user/default/workflows。本机绝对路径放 local.json（gitignore）。音频在 ComfyUI/output/<output_prefix>/。过程物按日落在 data/runs|tmp/YYYY-MM-DD/。",
+    "workflow_template": "urbanhiphop-身体先听懂.json",
+    "runs_dir": "songforge/data/runs",
+    "tmp_dir": "songforge/data/tmp",
+    "lyrics_dir": "songforge/input/lyrics",
+    "qc_cache_dir": "songforge/cache/qc",
+    "style_cache_dir": "songforge/cache/style",
+    "index_dir": "songforge/index",
+    "catalog_file": "songforge/index/catalog.jsonl",
+    "baseline_dir": "songforge/config/baseline",
+    "comfy_root": null,
+    "qc_python": null,
+    "music_dir": null,
+    "output_prefix": "MyMusic",
+    "output_format": "flac"
+  },
+
+  "song": {
+    "language": "zh",
+    "time_signature": "4",
+    "duration_range": [150, 200],
+    "_duration_extra_comment": "duration_extra_ranges 供短视频/口水歌等场景显式放行短时长，不削弱主区间。主区间是 35 首已验证实歌的经验范围，短时长没有对应实歌背书，所以必须显式列出而不是直接放宽。",
+    "duration_extra_ranges": [[100, 130]]
+  },
+
+  "lyrics": {
+    "_comment": "死心塌地时长对应关系。阈值由 8 首已验证可生成的歌实测反推，不是理论值；改前先跑 selftest 实歌回归。",
+    "_calibrated_on": "remake_v5.py 的 8 首实歌：每可唱小节 4.56~7.64 音节（均值 6.17），每句 5.9~7.4 音节（均值 6.7）",
+    "sing_bar_ratio": 0.70,
+    "intro_bars": 8,
+    "syllable_per_bar_min": 4.40,
+    "syllable_per_bar_max": 7.80,
+    "line_syllable_max": 12,
+    "ideal_line_syllable": [5, 12],
+
+    "_profile_comment": "密度档。default = 人声填满整首（中文说唱/流行）。sparse = 音乐主导、人声点缀（英文低声吟唱/纯器乐周边）。",
+    "_profile_why": "default 档是按 8 首'人声填满全曲'的实歌反推的。直接拿它校验第三张那种'音乐当主角、人声只是点缀'的写法，会把只有几句 ooh ooh 的低音吟唱判成歌词过少，逼着写满 254 音节以上——结果就是'只有人声没有音乐'，正好和目标相反。所以稀疏写法必须用另一套阈值，不能共用。",
+    "profiles": {
+      "sparse": {
+        "_comment": "稀疏档：可唱小节只占 25%（其余留给器乐），句子下限放宽到 3 音节，允许 ooh ooh / mmm 这类短语气词。",
+        "sing_bar_ratio": 0.25,
+        "syllable_per_bar_min": 4.40,
+        "syllable_per_bar_max": 7.80,
+        "line_syllable_max": 12,
+        "ideal_line_syllable": [3, 12]
+      }
+    }
+  },
+
+  "rules": {
+    "trigger_word": "swlvoice",
+    "intro_bars": 8
+  }
+}

@@ -1,0 +1,22 @@
+{
+ "base": {
+  "n_old": 8,
+  "coverage": 0.5065,
+  "voice_self": 0.9379,
+  "voice_floor": 0.8861,
+  "dynamic_db": 10.56,
+  "centroid": 1815.6,
+  "f0_drift_st": 1.5,
+  "tempo_drift": 0.0
+ },
+ "soft": {
+  "coverage": 0.4305,
+  "voice_nn": 0.8661,
+  "voice_self": 0.868,
+  "dyn_lo": 7.22,
+  "centroid_lo": 1367.6,
+  "f0_drift_st_max": 2.5,
+  "tempo_drift_max": 0.05
+ },
+ "note": "由 songforge qc --baseline-only --save-baseline 在 8 首已认可老歌上校准，不要手改"
+}

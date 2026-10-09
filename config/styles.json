@@ -1,0 +1,549 @@
+{
+  "_comment": "风格字典。style 供 --style 引用；bpm/key 为推荐值，可被命令行覆盖。",
+  "urbanhiphop": {
+    "style": "Chinese urban hiphop",
+    "bpm": 94,
+    "key": "F minor",
+    "duration": 165,
+    "instruments": "hard attacking kick, crisp layered snare, tight closed hi-hats with triplet rolls, aggressive sub bass, stabbing brass hits, neon synth stabs, wide stereo hook",
+    "mood": "precise rhythmic groove, sharp and tight, punchy snares",
+    "extra": "male rap with baritone tone, mid low register, controlling clean vocal tone, crisp clear pronunciation"
+  },
+  "chillhiphop": {
+    "style": "Chinese chill hiphop",
+    "bpm": 92,
+    "key": "C major",
+    "duration": 165,
+    "instruments": "soft round kick, brushed hi-hat, walking bass, warm rhodes chords, mellow keys",
+    "mood": "warm relaxed groove, gentle and easy",
+    "extra": "male singing with soft baritone tone, mid low register, clean controlled vocal tone"
+  },
+  "partyyrap": {
+    "style": "Chinese party hiphop",
+    "bpm": 126,
+    "key": "E minor",
+    "duration": 160,
+    "instruments": "bright four on the floor kick, crisp snare, sixteenth hi-hats, bouncing 808 bass, synth arpeggio, brass stab",
+    "mood": "explosive high energy, maximum bounce",
+    "extra": "male rap with baritone tone, mid low register, crisp clear pronunciation"
+  },
+  "pop": {
+    "style": "Chinese pop",
+    "bpm": 104,
+    "key": "F major",
+    "duration": 180,
+    "instruments": "tight punchy kick, crisp clap snare, modern synth bass, glossy electric piano, wide layered synths, claps",
+    "mood": "warm emotional groove, lifting chorus, clear contrast",
+    "extra": "clear male singing voice, stable tone, expressive but controlled"
+  },
+  "punk": {
+    "style": "Chinese punk rock",
+    "bpm": 168,
+    "key": "E minor",
+    "duration": 155,
+    "instruments": "driving distorted power chords, crashing cymbals, fast eighth note drums, punchy bass, roaring guitar riff",
+    "mood": "relentless high energy, aggressive and fast, shouted chorus",
+    "extra": "male vocal with gritty mid range, aggressive delivery, clear pronunciation"
+  },
+  "funkhiphop": {
+    "style": "Chinese funky hiphop",
+    "bpm": 118,
+    "key": "G major",
+    "duration": 160,
+    "instruments": "four on the floor kick, clapping and cowbell, walking bass, jazzy rhodes chords, funk guitar chops, brass stabs",
+    "mood": "playful bouncy groove, tight and groovy",
+    "extra": "male rap with baritone tone, mid low register, crisp clear pronunciation"
+  },
+  "discofunk": {
+    "style": "Chinese disco funk",
+    "bpm": 120,
+    "key": "A major",
+    "duration": 160,
+    "instruments": "four on the floor kick, handclaps and cowbell, walking bass, wah guitar, bright brass section, synth arpeggio",
+    "mood": "carefree party energy, playful and bouncy",
+    "extra": "male singing with bright tone, playful delivery, clear pronunciation"
+  },
+  "emopunk": {
+    "style": "Chinese emotional punk rock",
+    "bpm": 152,
+    "key": "A minor",
+    "duration": 175,
+    "instruments": "clean chiming guitars, driving bass, steady rock drums, wide reverb, melodic lead line",
+    "mood": "slow burning build, restrained verse and loud chorus",
+    "extra": "male singing with clear mid range, honest emotional delivery"
+  },
+  "jazzhiphop": {
+    "style": "Chinese jazz hiphop",
+    "bpm": 92,
+    "key": "Eb major",
+    "duration": 160,
+    "instruments": "groovy electric piano, walking bass, brass accents, shuffle drums, pocket groove, tight snare",
+    "mood": "smooth pocket groove, laid back but crisp",
+    "extra": "male rap with baritone tone, mid low register, crisp clear pronunciation"
+  },
+  "guofeng": {
+    "style": "Chinese traditional style hiphop",
+    "bpm": 99,
+    "key": "F minor",
+    "duration": 200,
+    "instruments": "erhu, pipa, bamboo flute, 808 sub bass, trap hats, traditional percussion",
+    "mood": "modern traditional fusion, cinematic and steady",
+    "extra": "male rap with baritone tone, mid low register, clear pronunciation"
+  },
+  "folk": {
+    "style": "Chinese folk ballad",
+    "bpm": 76,
+    "key": "G major",
+    "duration": 175,
+    "instruments": "nylon string acoustic guitar fingerpicking, warm upright bass, brushed snare, subtle piano, natural room reverb",
+    "mood": "intimate warm storytelling, gentle and honest, close mic",
+    "extra": "male singing with warm soft tenor tone, close to microphone, gentle restrained delivery, clear pronunciation"
+  },
+  "poppunk": {
+    "style": "Chinese pop punk",
+    "bpm": 156,
+    "key": "D major",
+    "duration": 158,
+    "instruments": "punchy palm muted power chords, driving bass, fast crisp drums, bright lead guitar riff, claps on chorus",
+    "mood": "upbeat catchy and bright, fast but singable, youthful",
+    "extra": "male singing with clear bright tone, energetic but controlled, crisp clear pronunciation"
+  },
+  "indie": {
+    "style": "Chinese indie pop",
+    "bpm": 112,
+    "key": "A major",
+    "duration": 172,
+    "instruments": "clean electric guitar arpeggio, analog synth pad, warm bass, real drum kit, subtle tremolo",
+    "mood": "dreamy nostalgic and warm, gently swaying",
+    "extra": "male singing with soft airy tone, gentle close mic delivery, clear pronunciation"
+  },
+  "electronic": {
+    "style": "Chinese future bass electro",
+    "bpm": 128,
+    "key": "F minor",
+    "duration": 168,
+    "instruments": "big supersaw synth lead, sidechained pad, punchy electro kick, trap snare, white noise riser, wide reverb",
+    "mood": "vast emotional build, euphoric and bright, festival anthem",
+    "extra": "male singing with clear bright tone, soaring controlled delivery, crisp clear pronunciation"
+  },
+  "lofi": {
+    "style": "Chinese chillhop lofi",
+    "bpm": 82,
+    "key": "C major",
+    "duration": 168,
+    "instruments": "dusty jazz chords, upright bass, soft rimshot, vinyl crackle, mellow rhodes, subtle swing",
+    "mood": "laid back nostalgic calm, late night quiet",
+    "extra": "male singing with soft low tone, relaxed and close, clear pronunciation"
+  },
+  "poprap": {
+    "_comment": "甜系中文 pop rap。tags 靠正向措辞自然带出鼓组，lean 模式不注入 RULE_NEG 那 20+ 条人声否定句。旧版 dy10_心动预警 的 lean tags 是 13 子句，本风格经 ironlaw 注入后约 43 子句。",
+    "style": "Chinese pop rap",
+    "bpm": 110,
+    "key": "C major",
+    "duration": 112,
+    "instruments": "bouncy kick and snare, sweet piano arpeggio, bright synth chords, hand claps, soft bass",
+    "mood": "sweet and bubbly, romantic crush feeling, upbeat and cute",
+    "extra": "male rap with clear tone, playful delivery, light and sweet, crisp clear pronunciation"
+  },
+  "poprap2": {
+    "_comment": "甜系 pop rap 第二首，节奏更跳一点，hook 更口语。",
+    "style": "Chinese pop rap",
+    "bpm": 114,
+    "key": "D major",
+    "duration": 112,
+    "instruments": "bouncy kick and snare, sweet piano arpeggio, bright synth chords, hand claps, soft bass",
+    "mood": "sweet and playful, cheeky and cute, upbeat and light",
+    "extra": "male rap with clear tone, playful delivery, light and sweet, crisp clear pronunciation"
+  },
+  "poprap3": {
+    "_comment": "甜系 pop rap 第三首，稍抒情一点，副歌更开阔。",
+    "style": "Chinese pop rap",
+    "bpm": 106,
+    "key": "A major",
+    "duration": 112,
+    "instruments": "bouncy kick and snare, sweet piano arpeggio, bright synth chords, hand claps, soft bass",
+    "mood": "sweet and warm, gentle crush feeling, bright and hopeful",
+    "extra": "male rap with clear tone, warm delivery, light and sweet, crisp clear pronunciation"
+  },
+  "funkdance": {
+    "_comment": "街舞编舞导向 funk。动作引导词写进 instruments 与 extra：downbeat 停顿、popping 咬点、groove 起伏。lean 模式使用，正向措辞。",
+    "style": "Chinese funk dance groove",
+    "bpm": 106,
+    "key": "E minor",
+    "duration": 160,
+    "instruments": "punchy four on the floor kick, dry crisp snare, tight closed hi-hats, short slap bass, clavinet stabs, wah guitar, tambourine, hand claps",
+    "mood": "bouncy playful groove, clear strong downbeat accents, light and easy groove, danceable pocket",
+    "extra": "male singing with clear warm tone, playful rhythmic delivery, crisp clear pronunciation, short punchy phrases on the downbeat"
+  },
+  "funkdance2": {
+    "_comment": "funk 第二首：更跳更复古，James Brown 式的连续十六分贝斯线。",
+    "style": "Chinese funk retro groove",
+    "bpm": 112,
+    "key": "A major",
+    "duration": 160,
+    "instruments": "hard four on the floor kick, crisp rimshot snare, tight hi-hats with sixteenth rolls, deep elastic bass, clavinet short stabs, brass stab accents, tambourine",
+    "mood": "explosive vintage groove, punchy and driving, playful rhythmic stop and start",
+    "extra": "male rap with warm clear tone, playful delivery, crisp clear pronunciation, short punchy phrases"
+  },
+  "funkdance3": {
+    "_comment": "funk 第三首：中速偏 chill，适合 isolations 编排，律动留白多。",
+    "style": "Chinese chill funk groove",
+    "bpm": 96,
+    "key": "D major",
+    "duration": 160,
+    "instruments": "round punchy kick, brushed snare, soft closed hi-hats, round walking bass, jazzy rhodes chords, muted trumpet accents, light tambourine",
+    "mood": "smooth pocket groove, laid back and warm, gentle swing, easy going bounce",
+    "extra": "male singing with soft clear tone, warm relaxed delivery, crisp clear pronunciation"
+  },
+  "funkdance4": {
+    "_comment": "funk 第四首：明快大调，适合 waacking / locking 快速手臂与定点。",
+    "style": "Chinese funk disco groove",
+    "bpm": 122,
+    "key": "G major",
+    "duration": 160,
+    "instruments": "bright four on the floor kick, crisp clap snare, tight hi-hats, elastic slap bass, clavi short stabs, bright brass accents, hand claps",
+    "mood": "bright cheerful groove, fast playful accents, crisp and clean, dance floor ready",
+    "extra": "male singing with bright clear tone, energetic playful delivery, crisp clear pronunciation, short punchy phrases"
+  },
+  "funkdance5": {
+    "_comment": "funk 第五首：带一点 trap 底鼓的现代 funk，hook 更抓耳，适合编舞短视频。",
+    "style": "Chinese modern funk groove",
+    "bpm": 114,
+    "key": "F minor",
+    "duration": 160,
+    "instruments": "hard four on the floor kick, layered crisp snare, tight closed hi-hats, deep sub and elastic bass, clavinet stabs, wah guitar short hits, hand claps",
+    "mood": "heavy on the downbeat, dark warm groove, catchy stop and start pocket, confident bounce",
+    "extra": "male singing with clear low tone, confident rhythmic delivery, crisp clear pronunciation, short punchy phrases on the downbeat"
+  },
+  "vocalchill": {
+    "_comment": "第三张专辑用：英文低声吟唱/哼唱，突出音乐本身，接近 Avicii 那种大编制 EDM + 克制人声。",
+    "style": "English melodic future bass, EDM, instrumental focus",
+    "bpm": 124,
+    "key": "A minor",
+    "duration": 175,
+    "instruments": "punchy electro kick, deep sub bass and walking bass, crisp clap, trap snare, huge supersaw lead, sidechain compressed pad, white noise riser, big reverb, melodic drop",
+    "mood": "vast uplifting emotional EDM, instrumental section showcase, euphoria then release",
+    "extra": "male low whisper vocal, hushed and intimate, sparse English words, mostly instrumental between phrases, no belting, no big singing"
+  },
+  "_comment_cuckoo": "===== cuckoo 编舞批次（2026-10-05）=====",
+  "ckfunk": {
+    "_comment": "中文 108 主体档。James Brown 的 The One：kick 落在 beat 1 最重，十六分 ghost note 铺满小节。108 是 funk 中心速度，也是 urban 团体齐舞命中率最高的一档。",
+    "style": "Chinese funk dance groove",
+    "bpm": 108,
+    "key": "E minor",
+    "duration": 160,
+    "instruments": "heavy four on the floor kick on beat one, dry crisp snare with ghost notes on every sixteenth, tight closed hi-hats accenting the offbeats, short slap bass with thumb pops and octave jumps, clavinet chicken scratch stabs, wah guitar short chops, tambourine and hand claps",
+    "mood": "bouncy playful groove, clear strong downbeat accents, stop and start pocket, light and easy, danceable",
+    "extra": "male singing with clear warm tone, playful rhythmic delivery, crisp clear pronunciation, short punchy phrases landing on the downbeat"
+  },
+  "ckfunkretro": {
+    "_comment": "中文 112 复古档。十六分音符滚奏 hi-hat + rimshot，James Brown 式连续贝斯线，适合大开大合的 frame。",
+    "style": "Chinese funk retro groove",
+    "bpm": 112,
+    "key": "A major",
+    "duration": 160,
+    "instruments": "hard four on the floor kick, crisp rimshot snare, tight hi-hats with sixteenth rolls, deep elastic slap bass line, clavinet short stabs, brass stab accents on the offbeat, tambourine",
+    "mood": "explosive vintage groove, punchy and driving, playful rhythmic stop and start",
+    "extra": "male singing with warm clear tone, playful delivery, crisp clear pronunciation, short punchy phrases"
+  },
+  "ckchillfunk": {
+    "_comment": "中文 98 chill 档。留白多、摆动大，适合 isolations 编排和慢速数拍教学，对应《两难》那种慢速解析路线。",
+    "style": "Chinese chill funk groove",
+    "bpm": 98,
+    "key": "D major",
+    "duration": 160,
+    "instruments": "round punchy kick, brushed snare, soft closed hi-hats, round walking bass, jazzy rhodes chords, muted trumpet accents, light tambourine, gentle swing",
+    "mood": "smooth pocket groove, laid back and warm, gentle swing, easy going bounce",
+    "extra": "male singing with soft clear tone, warm relaxed delivery, crisp clear pronunciation"
+  },
+  "cktrapfunk": {
+    "_comment": "中文 122 快速档。trap 底鼓 + funk 十六分，体感按 half-time 走，适合抖音短视频卡点快闪。",
+    "style": "Chinese modern trap funk groove",
+    "bpm": 122,
+    "key": "F minor",
+    "duration": 160,
+    "instruments": "hard four on the floor kick hitting on every single beat, layered crisp snare, tight closed hi-hats, deep sub bass and elastic bass pumping on every beat, clavinet short stabs, wah guitar short hits, hand claps, half time feel",
+    "mood": "heavy on the downbeat, dark warm groove, catchy stop and start pocket, confident bounce",
+    "extra": "male singing with clear low tone, confident rhythmic delivery, crisp clear pronunciation, short punchy phrases on the downbeat"
+  },
+  "ckfunken": {
+    "_comment": "英文 110 主体档。同 ckfunk 的鼓组，英文咬字需要更松的元音，所以 extra 写 melismatic 一点点、phrasing 更 swing。",
+    "style": "English funk dance groove",
+    "bpm": 110,
+    "key": "F minor",
+    "duration": 160,
+    "instruments": "heavy four on the floor kick hitting on every single beat, dry crisp snare with ghost notes, tight closed hi-hats accenting the offbeats, short slap bass with thumb pops pumping on every beat, clavinet chicken scratch stabs, wah guitar chops, tambourine and hand claps",
+    "mood": "bouncy playful groove, clear strong downbeat accents, stop and start pocket, danceable",
+    "extra": "male singing with clear warm tone, playful rhythmic phrasing, crisp clear English pronunciation, short punchy phrases landing on the downbeat"
+  },
+  "ckfunkdisco": {
+    "_comment": "英文 118 复古 disco 档。对应《Talk Dirty》那种快卡点，brass stab 更亮，十六分更密。",
+    "style": "English funk disco groove",
+    "bpm": 118,
+    "key": "A major",
+    "duration": 160,
+    "instruments": "bright four on the floor kick, crisp clap snare, tight hi-hats with sixteenth rolls, elastic slap bass, clavi short stabs, bright brass stab accents, hand claps",
+    "mood": "bright cheerful groove, fast playful accents, crisp and clean, dance floor ready",
+    "extra": "male singing with bright clear tone, energetic playful delivery, crisp clear English pronunciation, short punchy phrases"
+  },
+  "ckrbslow": {
+    "_comment": "英文 96 slow R&B 档。对应《想想念念》《还是会想你》那条抒情编舞线：isolations、延伸细腻动作、情绪拉满。",
+    "style": "English slow R&B groove with funk drums",
+    "bpm": 96,
+    "key": "E minor",
+    "duration": 160,
+    "instruments": "round punchy kick, brushed snare, soft closed hi-hats, round walking bass, warm rhodes chords, muted trumpet accents, light tambourine, gentle swing",
+    "mood": "smooth warm pocket groove, laid back and tender, gentle swing, emotional and easy going",
+    "extra": "male singing with soft warm tone, tender relaxed delivery, crisp clear English pronunciation, smooth legato phrasing"
+  },
+  "cktrapfunken": {
+    "_comment": "英文 124 快速档。trap 底鼓 + funk 十六分，体感 half-time，适合快手 waacking 和定点。",
+    "style": "English modern trap funk groove",
+    "bpm": 124,
+    "key": "G minor",
+    "duration": 160,
+    "instruments": "hard four on the floor kick hitting on every single beat, layered crisp snare, tight closed hi-hats, deep sub bass and elastic bass pumping on every beat, clavinet short stabs, wah guitar short hits, hand claps, half time feel",
+    "mood": "heavy on the downbeat, dark confident groove, catchy stop and start pocket, fast bounce",
+    "extra": "male singing with clear low tone, confident rhythmic delivery, crisp clear English pronunciation, short punchy phrases on the downbeat"
+  },
+  "_comment_birthday": "===== 一棠生日·术力口三版（2026-10-05）=====",
+  "vocaloid_fb": {
+    "_comment": "术力口生日 V1：高速可爱 future bass，最具 Vocaloid 感的一版。lean 模式使用，中日双语歌词。",
+    "style": "Chinese Vocaloid style future bass, J-pop electro",
+    "bpm": 160,
+    "key": "F major",
+    "duration": 118,
+    "instruments": "four on the floor kick, bright snare rolls, fast sixteenth note hi-hats, bouncy synth bass, glittery arpeggio, supersaw lead, xylophone-like bell melody, hand claps, cute chiptune accents",
+    "mood": "bright and hyper cute, happy birthday celebration, energetic and bouncy, youthful 10s vibe, sparkling and uplifting",
+    "extra": "cute high pitched female singing voice, Vocaloid style vocal, bright girlish tone, clear Japanese and Mandarin pronunciation, cheerful energetic delivery, catchy melodic phrases"
+  },
+  "vocaloid_euro": {
+    "_comment": "术力口生日 V2：日系 Eurobeat / 高速蹦迪感，副歌洗脑。lean 模式使用，中日双语。",
+    "style": "Japanese Eurobeat style J-pop, dance pop",
+    "bpm": 155,
+    "key": "D major",
+    "duration": 118,
+    "instruments": "fast four on the floor kick, powerful snare, rolling sixteenth hi-hats, driving synth bass, bright brass stabs, retro synth lead, piano staccato, tambourine, hand claps on every beat",
+    "mood": "explosive high energy, happy party feeling, catchy singalong chorus, upbeat and joyful, celebratory dance floor vibe",
+    "extra": "bright powerful female singing voice, clear energetic tone, Japanese and Mandarin bilingual vocals, strong catchy chorus, upbeat rhythmic delivery"
+  },
+  "vocaloid_jpop": {
+    "_comment": "术力口生日 V3：稍抒情 J-pop，旋律好听，适合全家一起唱。lean 模式使用，中日双语。",
+    "style": "Japanese pop ballad, J-pop style",
+    "bpm": 128,
+    "key": "E major",
+    "duration": 122,
+    "instruments": "warm acoustic guitar strumming, gentle piano arpeggio, soft kick and snare, warm bass, strings pad, glockenspiel melody, light tambourine, warm brass accents on chorus",
+    "mood": "warm heartfelt emotion, gentle and sincere, uplifting chorus, sweet birthday blessing, family friendly and touching",
+    "extra": "warm clear female singing voice, sweet gentle tone, Japanese and Mandarin bilingual vocals, emotional but controlled delivery, clear pronunciation, singalong melody"
+  },
+  "_comment_insomnia": "===== 失眠三部曲（2026-10-06）=====",
+  "insomnia1_rnb": {
+    "_comment": "失眠三部曲 1/3《三点半》：都市抒情 R&B，凌晨空房间的空旷感。中低音叙事，气声多，不推满。shift=5.0 贴少年音中低音区。",
+    "style": "Chinese emotional R&B ballad",
+    "bpm": 78,
+    "key": "C minor",
+    "duration": 175,
+    "instruments": "soft deep sub bass on every beat, gentle rim click rhythm, warm piano arpeggios, atmospheric synth pad, subtle vinyl crackle, spacious reverb, slow grooving",
+    "mood": "late night quiet, lonely and introspective, empty room echo, gentle melancholy, slow burning emotion",
+    "extra": "male singing with soft youthful tone, mid low register, intimate close mic delivery, breathy and fragile, gentle restrained emotion, clear pronunciation, no belting, no high notes"
+  },
+  "insomnia2_emo": {
+    "_comment": "失眠三部曲 2/3《旧号码》：Emo R&B 慢板，情绪最低点。钢琴为主，弦乐铺底，鼓点极度克制。shift=5.0 贴中低音脆弱感。",
+    "style": "Chinese emo R&B slow ballad",
+    "bpm": 72,
+    "key": "A minor",
+    "duration": 200,
+    "instruments": "slow piano chords, deep sub bass on every beat, soft string pad, minimal brushed snare, spacious reverb, ambient texture",
+    "mood": "deep sadness, heartbroken and tender, quiet crying feeling, restrained verse and emotional chorus, intimate vulnerability",
+    "extra": "male singing with soft fragile youthful tone, mid low register, intimate close mic, breathy delivery, trembling vulnerable emotion, gentle crying tone, no belting, no high notes, clear pronunciation"
+  },
+  "insomnia3_folk": {
+    "_comment": "失眠三部曲 3/3《天又亮了》：民谣 R&B，清晨麻木的温柔。木吉他 + 轻拍军鼓，情绪是'熬过去了'的平静。shift=5.0。时长 200s 给叙事留呼吸。",
+    "style": "Chinese folk R&B, morning after vibe",
+    "bpm": 85,
+    "key": "G major",
+    "duration": 200,
+    "instruments": "warm acoustic guitar fingerpicking, soft sub bass on every beat, brushed snare, gentle synth pad, light tambourine, natural room reverb, morning ambient feel",
+    "mood": "calm resignation, gentle acceptance, quiet hope, numb but soft, morning after a long night, bittersweet warmth",
+    "extra": "male singing with soft warm youthful tone, mid low register, gentle honest delivery, intimate close mic, restrained emotion, clear pronunciation, no belting, no high notes"
+  },
+  "_comment_edm": "===== 甜嗓电音三部曲（2026-10-06）中 + 英 =====",
+  "edm1_chudian": {
+    "_comment": "甜嗓电音 1/6《触电》：明快 EDM-pop，一见钟情的甜。BPM 128，大调，合成器钩子 + 弹跳鼓点。shift=5.2 提亮少年音。",
+    "style": "Chinese EDM pop, upbeat electro pop",
+    "bpm": 128,
+    "key": "C major",
+    "duration": 195,
+    "instruments": "four on the floor kick, bright snare on 2 and 4, fast sixteenth hi-hats, bouncy synth bass, catchy synth lead hook, bright pluck arpeggio, piano stabs, wide stereo chorus, sidechained pads",
+    "mood": "sweet energetic, bubbly happy feeling, butterflies in stomach, first love excitement, catchy singalong chorus, youthful upbeat vibe",
+    "extra": "male singing with bright sweet youthful tone, mid high register, energetic delivery, clear pronunciation, catchy melodic chorus, upbeat rhythmic feel, Justin Bieber style pop vocal, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "edm2_pin dao": {
+    "_comment": "甜嗓电音 2/6《专属频道》：R&B 电音，暧昧拉扯感。BPM 120，中速，808 + 合成器铺垫。shift=5.0。",
+    "style": "Chinese R&B electro pop, mid tempo",
+    "bpm": 120,
+    "key": "E major",
+    "duration": 195,
+    "instruments": "trap style 808 bass, crisp snare rolls, fast hi-hat triplets, warm rhodes chords, shiny synth pluck, soft pad, sidechained sub bass",
+    "mood": "flirty and playful, sweet tension, crush feeling, smooth grooving, catchy melodic hooks, confident swagger mixed with vulnerability",
+    "extra": "male singing with smooth sweet youthful tone, mid register, rhythmic delivery, clear pronunciation, catchy chorus with melodic hooks, modern pop R&B vocal style, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "edm3_yehang": {
+    "_comment": "甜嗓电音 3/6《夜航》：最嗨 EDM 副歌，深夜公路释放感。BPM 138，synth-pop + EDM drop。shift=5.2。",
+    "style": "Chinese EDM pop, synthwave dance pop, big chorus",
+    "bpm": 138,
+    "key": "D major",
+    "duration": 200,
+    "instruments": "powerful four on the floor kick, massive snare, fast rolling hi-hats, driving synth bass, big supersaw lead, retro synth arpeggio, wide stereo pad, build up risers, impactful drop",
+    "mood": "euphoric freedom, night driving adrenaline, big emotional chorus, uplifting release, triumphant feeling, neon lights energy, dance floor ready",
+    "extra": "male singing with bright powerful youthful tone, mid high register, energetic belting on chorus, clear pronunciation, big catchy hooks, modern pop EDM vocal style, Justin Bieber Purpose era vibe, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "edm4_electric": {
+    "_comment": "甜嗓电音 4/6《Electric Touch》：英文甜系 EDM-pop，一见钟情。BPM 128，Justin Bieber 风格。shift=5.2。",
+    "style": "EDM pop, upbeat electro pop, Justin Bieber style",
+    "bpm": 128,
+    "key": "C major",
+    "duration": 195,
+    "instruments": "four on the floor kick, bright snare, fast sixteenth hi-hats, bouncy synth bass, catchy synth lead hook, pluck arpeggio, piano stabs, wide stereo chorus, sidechained pads",
+    "mood": "sweet energetic, bubbly happy, butterflies in stomach, first love excitement, catchy singalong chorus, youthful upbeat vibe, radio friendly pop",
+    "extra": "male singing with bright sweet youthful tone, mid high register, energetic delivery, clear English pronunciation, catchy melodic chorus, upbeat rhythmic feel, modern pop vocal style, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "edm5_frequency": {
+    "_comment": "甜嗓电音 5/6《Frequency》：英文 R&B 电音，暧昧律动。BPM 120，R&B + electro。shift=5.0。",
+    "style": "R&B electro pop, mid tempo, modern pop R&B",
+    "bpm": 120,
+    "key": "E major",
+    "duration": 195,
+    "instruments": "trap style 808 bass, crisp snare rolls, fast hi-hat triplets, warm rhodes chords, shiny synth pluck, soft pad, sidechained sub bass, snap on backbeat",
+    "mood": "flirty and playful, sweet tension, crush feeling, smooth grooving, catchy melodic hooks, confident swagger mixed with vulnerability, modern pop vibe",
+    "extra": "male singing with smooth sweet youthful tone, mid register, rhythmic delivery, clear English pronunciation, catchy chorus with melodic hooks, modern pop R&B vocal style, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "edm6_neon": {
+    "_comment": "甜嗓电音 6/6《Neon Drive》：英文 synthwave pop，最炸副歌。BPM 138，霓虹之夜。shift=5.2。",
+    "style": "synthwave pop, EDM pop, retro futuristic, big chorus",
+    "bpm": 138,
+    "key": "D major",
+    "duration": 200,
+    "instruments": "powerful four on the floor kick, massive snare, fast rolling hi-hats, driving synth bass, big supersaw lead, retro synth arpeggio, wide stereo pad, build up risers, impactful drop, neon synth sounds",
+    "mood": "euphoric freedom, night driving adrenaline, big emotional chorus, uplifting release, triumphant feeling, neon lights energy, dance floor ready, retro 80s vibe meets modern pop",
+    "extra": "male singing with bright powerful youthful tone, mid high register, energetic belting on chorus, clear English pronunciation, big catchy hooks, modern pop EDM vocal style, The Weeknd meets Justin Bieber vibe, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "_comment_trending": "===== 平台热门电音 5 首（2026-10-06）3 热门 + 2 爱情 =====",
+  "trend1_miaozhen": {
+    "_comment": "热门 1/5《秒针》：UK Garage/DnB PinkPantheress 风格。快碎拍+甜嗓轻语，TikTok 爆款。BPM 160，A minor。shift=5.2。",
+    "style": "UK garage pop, drum and bass inspired, PinkPantheress style, fast breakbeat pop",
+    "bpm": 160,
+    "key": "A minor",
+    "duration": 180,
+    "instruments": "fast 2-step breakbeat, chopped amen break, bouncy sub bass, bright synth stabs, atmospheric pad, retro 2000s garage feel, sidechained bass, crisp hi-hats, snare on backbeat",
+    "mood": "anxious crush feeling, waiting for reply, sweet nervousness, fast paced but gentle delivery, nostalgic Y2K vibe, TikTok viral energy, short catchy phrases",
+    "extra": "male singing with sweet soft youthful tone, mid high register, light breathy delivery, almost whispered verses, catchy melodic chorus, fast rhythmic phrasing, clear pronunciation, PinkPantheress style vocal, British pop feel, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "trend2_riluo": {
+    "_comment": "热门 2/5《日落大道》：Amapiano/Afrobeats pop。非洲律动+log drum+口哨旋律。BPM 112，F major。shift=5.0。",
+    "style": "Amapiano pop, Afrobeats dance pop, warm groove",
+    "bpm": 112,
+    "key": "F major",
+    "duration": 195,
+    "instruments": "log drum bass, soft shaker pattern, conga percussion, warm rhodes chords, guitar pluck melody, whistle hook, smooth pad, sidechained sub bass, gentle four on the floor, tambourine",
+    "mood": "warm summer evening, romantic sunset walk, feel good groove, gentle danceable, sweet and relaxed, African dance pop meets Chinese pop, infectious rhythm",
+    "extra": "male singing with warm sweet youthful tone, mid register, smooth groovy delivery, clear pronunciation, catchy melodic hooks, warm intimate feel, modern Afro pop vocal style, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "trend3_xinhao": {
+    "_comment": "热门 3/5《信号干扰》：Hyperpop/Bass DJ。重低音 drop+电子音效+洗脑 hook。抖音 DJ 风。BPM 140，E minor。shift=5.2。",
+    "style": "hyperpop, bass heavy DJ pop, Chinese TikTok DJ style, electronic dance pop",
+    "bpm": 140,
+    "key": "E minor",
+    "duration": 190,
+    "instruments": "massive bass drop, punchy four on the floor kick, aggressive snare, fast hi-hat rolls, distorted synth lead, riser build ups, impactful drop section, sidechained everything, electronic sound effects, sub bass wobble",
+    "mood": "anxious and catchy, dramatic tension, electronic energy, club ready, TikTok viral, mysterious atmosphere, dramatic build and release, dark but sweet",
+    "extra": "male singing with bright sweet youthful tone, mid high register, energetic rhythmic delivery, clear pronunciation, catchy repetitive hooks, spoken word elements, modern hyperpop vocal style, Charli XCX meets Chinese pop, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "trend4_xiaoyuzhou": {
+    "_comment": "爱情 1/2《小宇宙》：UK Garage sweet pop。甜系 2-step 情歌，两个人的小世界。BPM 130，G major。shift=5.2。",
+    "style": "UK garage sweet pop, 2-step love song, gentle electronic pop",
+    "bpm": 130,
+    "key": "G major",
+    "duration": 190,
+    "instruments": "2-step garage beat, shuffled hi-hats, warm sub bass, bright synth chords, pluck arpeggio, soft pad, piano stabs, gentle sidechain, sweet melody, romantic feel",
+    "mood": "sweet romantic, cozy intimate, two people in their own world, warm and fuzzy, gentle danceable, cute and innocent love, feel good",
+    "extra": "male singing with sweet warm youthful tone, mid high register, gentle tender delivery, clear pronunciation, catchy melodic chorus, sweet love song vocal, Justin Bieber early era vibe, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+  "trend5_gaobai": {
+    "_comment": "爱情 2/2《告白前夜》：Synth-pop 电子情歌。告白前的紧张期待。BPM 100，D major。shift=5.0。",
+    "style": "synth pop ballad, electronic love song, emotional pop",
+    "bpm": 100,
+    "key": "D major",
+    "duration": 200,
+    "instruments": "warm synth pad, gentle electronic kick, soft snare, arpeggiated synth, sub bass, piano chords, dreamy atmosphere, light hi-hats, building synth layers, emotional strings, spacious reverb",
+    "mood": "nervous anticipation, tender vulnerability, night before confession, sleepless and lovesick, sweet anxiety, hopeful but scared, emotional climax, heartfelt",
+    "extra": "male singing with sweet tender youthful tone, mid register, emotional delivery, clear pronunciation, building from soft verse to emotional chorus, breathy verses, heartfelt chorus, gentle falsetto touches, modern synth pop vocal, The Weeknd ballad style, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+
+  "moto_yehang": {
+    "_comment": "夜航摩托车版：引擎轰鸣 + synthwave 飞驰感。BPM 145，D major。shift=5.2。摩托车公路飞驰。",
+    "style": "synthwave rock pop, motorcycle highway driving, energetic electronic rock",
+    "bpm": 145,
+    "key": "D major",
+    "duration": 200,
+    "instruments": "driving four on the floor kick, powerful snare, fast rolling hi-hats, roaring synth bass like engine rev, big supersaw lead, retro synth arpeggio, wide stereo pad, guitar power chords, build up risers, impactful drop, wind sound effect, road trip energy",
+    "mood": "euphoric freedom, motorcycle highway adrenaline, wind in face, big emotional chorus, uplifting release, triumphant feeling, night ride energy, dance floor ready, retro 80s meets modern pop",
+    "extra": "male singing with bright powerful youthful tone, mid high register, energetic belting on chorus, clear pronunciation, big catchy hooks, modern pop EDM vocal style, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+
+  "edm3_yehang_vox": {
+    "_comment": "夜航声线优先版：降BPM到128、C大调、中低音区，最大限度还原参考声线。shift=4.0。",
+    "style": "synthwave pop, night drive electronic pop, mid tempo EDM pop",
+    "bpm": 128,
+    "key": "C major",
+    "duration": 200,
+    "instruments": "four on the floor kick, crisp snare, steady rolling hi-hats, warm synth bass, soft supersaw lead, retro arpeggio, wide stereo pad, gentle build ups, emotional drop, dreamy atmosphere, reverb and delay",
+    "mood": "euphoric freedom, night drive feeling, wind in hair, emotional release, uplifting but intimate, nostalgic synthwave vibe, warm energy, modern pop sensibility",
+    "extra": "male singing with natural youthful tone, mid register, conversational delivery, clear pronunciation, melodic chorus, preserve exact voice timbre and color, true to reference voice, natural breathing, smooth phrasing, no belting, no screaming, no vocal acrobatics, stay in natural vocal range, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+
+  "edm6_neon_vox": {
+    "_comment": "Neon Drive声线优先版：降BPM到128、C大调、中低音区，英文演唱最大限度还原参考声线。shift=4.0。",
+    "style": "synthwave pop, neon night drive electronic pop, mid tempo EDM pop",
+    "bpm": 128,
+    "key": "C major",
+    "duration": 200,
+    "instruments": "four on the floor kick, crisp snare, steady rolling hi-hats, warm synth bass, soft supersaw lead, retro arpeggio, wide stereo pad, gentle build ups, emotional drop, dreamy atmosphere, reverb and delay",
+    "mood": "euphoric freedom, neon night drive feeling, city lights, emotional release, uplifting but intimate, nostalgic synthwave vibe, warm energy, modern pop sensibility",
+    "extra": "male singing with natural youthful tone, mid register, conversational delivery, clear English pronunciation, melodic chorus, preserve exact voice timbre and color, true to reference voice, natural breathing, smooth phrasing, no belting, no screaming, no vocal acrobatics, stay in natural vocal range, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+
+  "trend3_xinhao_pro": {
+    "_comment": "信号干扰Pro版：Hyperpop + Bass House 升级版，编曲更炸更有层次，drop 更有冲击力。BPM 140，E minor。shift=5.2。100% 男声独唱。",
+    "style": "hyperpop bass house, aggressive electronic pop, glitchy EDM",
+    "bpm": 140,
+    "key": "E minor",
+    "duration": 200,
+    "instruments": "massive sub bass drop, punchy four on the floor kick, aggressive snare rolls, fast hi-hat triplets, distorted synth lead, glitchy synth stabs, supersaw chords, riser build ups, impactful drops, synth brass hits, pluck arpeggios, heavy sidechain compression, stereo widening, fm bass, 808 sub bass, breakdown with piano, second drop bigger than first, epic build",
+    "mood": "chaotic energy, emotional turbulence, signal distortion feeling, aggressive but catchy, intense chorus, glitchy vibe, futuristic electronic, dance floor banger, headbanging energy, triumphant drop",
+    "extra": "male singing with bright sweet youthful tone, mid high register, energetic rhythmic delivery, clear pronunciation, catchy repetitive hooks, spoken word sections that build into singing, powerful chorus, modern hyperpop vocal style, Charli XCX meets 100 gecs energy but male voice, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops, no vocal samples"
+  },
+
+  "futureremix": {
+    "_comment": "Future House EDM 通用：弹跳合成贝斯+supersaw+drop结构。128 BPM，F minor，时长168s。",
+    "style": "modern future house EDM, bouncy club electronic, big room dance",
+    "bpm": 128,
+    "key": "F minor",
+    "duration": 168,
+    "instruments": "punchy four on the floor kick, bouncy offbeat synth bass, deep sub bass, crisp claps, tight closed hi-hats, driving future house bassline, wide supersaw chords, plucky synth lead melody, offbeat bass stabs, heavy sidechain compression, white noise build, euphoric drop, second drop bigger than first, club dance groove",
+    "mood": "euphoric club energy, high voltage night drive, dance floor rush, sweet crush turned explosive, uplifting release, bouncy and hyped, anthemic festival feeling, nonstop momentum",
+    "extra": "male singing with bright energetic tone, punchy rhythmic delivery, clear pronunciation, catchy repeating hook, strong anthemic chorus, modern EDM vocal style, forward and confident, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  },
+
+  "test_filler_fix": {
+    "_comment": "衬音修复测试 demo：90s 短时长，验证 lean 模式下 RULE_NO_FILLER 是否生效。",
+    "style": "future house electronic pop, upbeat EDM pop",
+    "bpm": 128,
+    "key": "C major",
+    "duration": 130,
+    "instruments": "punchy four on the floor kick, bouncy offbeat synth bass, crisp claps, tight closed hi-hats, warm supersaw chords, plucky synth lead, heavy sidechain, euphoric drop",
+    "mood": "upbeat euphoric, dance floor energy, sweet and catchy, uplifting release",
+    "extra": "male singing with bright sweet youthful tone, mid high register, energetic rhythmic delivery, clear pronunciation, catchy hooks, solo male vocal only, no female vocals, no backup vocals, no choir, no duet, no vocal chops"
+  }
+}

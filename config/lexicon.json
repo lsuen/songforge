@@ -1,0 +1,23 @@
+{
+  "_comment": "身份词典与禁用词。用户是街头双翘滑手(street skateboarding)，不是长板。",
+
+  "identity": {
+    "persona": "街头滑手",
+    "board": "双翘滑板（街头双翘）",
+    "en_terms": ["skateboard", "skateboarding", "skatepark", "skater"],
+    "scene": ["街头", "广场", "水泥地", "马路牙子", "地下通道", "天台", "刷街"],
+    "verb": ["刷街", "滑行", "起板", "压板", "转向", "落地", "刹停", "推板"],
+    "tone": ["轻松", "倔", "自由", "不装"]
+  },
+
+  "banned": {
+    "_comment": "禁止出现在歌词里的词。命中即 check 报错。原因是《鸟巢滑手》曾误写为长板/护具设定，与本人身份不符。",
+    "longboard": ["长板", "长板的轮子", "长板的孩子", "longboard", "长板滑板", "护具", "护膝", "头盔", "上山", "速降", "下坡", "carve", "slide", "长板赛道"],
+    "misidentity": ["滑板少年" ]
+  },
+
+  "warnings": {
+    "_comment": "不报错但提醒。",
+    "near_miss": ["轮子转起来", "板面", "水泥地"]
+  }
+}

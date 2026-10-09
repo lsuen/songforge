@@ -1,0 +1,45 @@
+# --- 本机覆盖（勿提交）---
+config/local.json
+
+# --- 过程与缓存（保留 .gitkeep 占位）---
+data/**
+!data/.gitkeep
+!data/runs/
+!data/runs/.gitkeep
+!data/tmp/
+!data/tmp/.gitkeep
+tmp/
+cache/**
+!cache/.gitkeep
+runs/
+index/catalog.jsonl
+index/by_day/
+
+# --- 音频 / 误放报告 ---
+*.flac
+*.wav
+*.mp3
+qc.json
+
+# --- 大体量归档（进 archive 分支，不进 main）---
+_archive/
+.bak/
+bak/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.codebase-index/
+
+# --- 编辑器 / OS ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# --- 索引占位 ---
+!index/.gitkeep
+!input/lyrics/.gitkeep
